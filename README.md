@@ -28,6 +28,8 @@ Check the config.ini file, need to add the root url keep source as WEBAPI and di
 
 	[root_url]
 	root=https://developers.symphonyfintech.in
+	accesspassword=2021HostLookUpAccess
+	version=interactiveapi_1.0.1
 	broadcastMode=Full
 ```
 
@@ -43,6 +45,15 @@ Check the config.ini file, need to add the root url keep source as WEBAPI and di
 	"""Make XTSConnect object by passing your interactive API appKey, secretKey and source"""
 	xt = XTSConnect(API_KEY, API_SECRET, source)
 ```
+#### Login to hostlookup (for Interactive API only)
+To start with Interactive Api Login one need to generate an endpoints calling hostlookup. Using that endpoints you can access other interactive api calls.
+```js
+	"""Interactive Hostlookup Login"""
+	res = xt.hostlookup_login()
+```
+
+
+
 
 #### Login
 To login into API call the login service which will return a token. This token will help you to access other services throughout the session.
