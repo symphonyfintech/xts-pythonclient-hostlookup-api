@@ -31,19 +31,6 @@ soc = OrderSocket_io(set_interactiveToken, set_iuserID,xt.connectionString)
 def on_connect():
     """Connect from the socket."""
     print('Interactive socket connected successfully!')
-    response = xt.place_order(
-        exchangeSegment=xt.EXCHANGE_NSECM,
-        exchangeInstrumentID=2885,
-        productType=xt.PRODUCT_MIS,
-        orderType=xt.ORDER_TYPE_MARKET,
-        orderSide=xt.TRANSACTION_TYPE_BUY,
-        timeInForce=xt.VALIDITY_DAY,
-        disclosedQuantity=0,
-        orderQuantity=10,
-        limitPrice=0,
-        stopPrice=0,
-        orderUniqueIdentifier="454845")
-    print("Place Order: ", response)
 
 # Callback for receiving message
 def on_message():
