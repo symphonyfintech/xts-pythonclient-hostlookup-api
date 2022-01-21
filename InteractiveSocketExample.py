@@ -2,8 +2,8 @@ from Connect import XTSConnect
 from InteractiveSocketClient import OrderSocket_io
 
 # Interactive API Credentials
-API_KEY = "cd454b5dd84a077be14592"
-API_SECRET = "Rxdu147#sV"
+API_KEY = "cd454b5dd84a077dbe14592"
+API_SECRET = "Rxdud147#sV"
 source = "WEBAPI"
 
 # Initialise
