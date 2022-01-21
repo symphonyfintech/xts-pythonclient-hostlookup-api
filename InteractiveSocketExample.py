@@ -11,7 +11,7 @@ xt = XTSConnect(API_KEY, API_SECRET, source)
 
 #hostlookuplogin
 res = xt.hostlookup_login()
-print(res)
+
 
 # Login for authorization token
 response = xt.interactive_login()
