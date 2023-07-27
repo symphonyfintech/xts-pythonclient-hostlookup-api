@@ -1,3 +1,4 @@
+
 """
     Connect.py
 
@@ -93,25 +94,25 @@ class XTSConnect(XTSCommon):
         "hostlookup.login":"/HostLookUp",
 
         "user.login": "/user/session",
-        "user.logout": "/interactive/user/session",
-        "user.profile": "/interactive/user/profile",
-        "user.balance": "/interactive/user/balance",
+        "user.logout": "/user/session",
+        "user.profile": "/user/profile",
+        "user.balance": "/user/balance",
 
-        "orders": "/interactive/orders",
-        "trades": "/interactive/orders/trades",
-        "order.status": "/interactive/orders",
+        "orders": "/orders",
+        "trades": "/orders/trades",
+        "order.status": "/orders",
         "order.place": "/orders",
-        "order.place.cover": "/interactive/orders/cover",
-        "order.exit.cover": "/interactive/orders/cover",
-        "order.modify": "/interactive/orders",
-        "order.cancel": "/interactive/orders",
-        "order.cancelall": "/interactive/orders/cancelall",
-        "order.history": "/interactive/orders",
+        "order.place.cover": "/orders/cover",
+        "order.exit.cover": "/orders/cover",
+        "order.modify": "/orders",
+        "order.cancel": "/orders",
+        "order.cancelall": "/orders/cancelall",
+        "order.history": "/orders",
 
-        "portfolio.positions": "/interactive/portfolio/positions",
-        "portfolio.holdings": "/interactive/portfolio/holdings",
-        "portfolio.positions.convert": "/interactive/portfolio/positions/convert",
-        "portfolio.squareoff": "/interactive/portfolio/squareoff",
+        "portfolio.positions": "/portfolio/positions",
+        "portfolio.holdings": "/portfolio/holdings",
+        "portfolio.positions.convert": "/portfolio/positions/convert",
+        "portfolio.squareoff": "/portfolio/squareoff",
 
         # Market API endpoints
         "marketdata.prefix": "marketdata",
@@ -281,7 +282,7 @@ class XTSConnect(XTSCommon):
 
     def get_profile(self, clientID=None):
         """Using session token user can access his profile stored with the broker, it's possible to retrieve it any
-        point of time with the http: //ip:port/interactive/user/profile API. """
+        point of time with the http: //ip:port/user/profile API. """
         try:
             params = {}
             if not self.isInvestorClient:
