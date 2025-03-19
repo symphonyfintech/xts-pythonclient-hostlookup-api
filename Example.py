@@ -60,6 +60,7 @@ response = xt.place_order(
     limitPrice=0,
     stopPrice=0,
     orderUniqueIdentifier="454845",
+    apiOrderSource="abc",
     clientID=clientID)
 print("Place Order: ", response)
 
@@ -140,6 +141,7 @@ response = xt.place_cover_order(
     limitPrice=1802,
     stopPrice=1899,
     orderUniqueIdentifier="454845",
+    apiOrderSource="abc",
     clientID=clientID)
 print("Cover Order:", response)
 
@@ -150,6 +152,59 @@ if response['type'] != 'error':
 """Exit Cover Order Request"""
 response = xt.exit_cover_order(appOrderID=OrderID, clientID=clientID)
 print("Exit Cover Order:", response)
+
+"""Place BracketOrder Request"""
+response = xt.place_bracketorder(
+    exchangeSegment=xt.EXCHANGE_NSECM,
+    exchangeInstrumentID=2885,
+    orderType=xt.ORDER_TYPE_MARKET,
+    orderSide=xt.TRANSACTION_TYPE_BUY,
+    disclosedQuantity=0,
+    orderQuantity=10,
+    limitPrice=59,
+    squarOff=1,
+    stopLossPrice=1,
+	trailingStoploss=1,
+    isProOrder=False,
+    apiOrderSource="abc",
+    orderUniqueIdentifier="454845",
+    clientID=clientID
+    )
+print("Bracket Order: ", response)
+
+# extracting the order id from response
+if response['type'] != 'error':
+    OrderID = response['result']['AppOrderID']
+    
+    """Cancel BracketOrder Request"""
+    res = xt.bracketorder_cancel(OrderID)
+    print("Bracket Cancel: ", response)
+
+    """Modify BracketOrder Request"""
+    response = xt.modify_order(
+        appOrderID=OrderID,
+        orderQuantity=8,
+        limitPrice=1405,
+        stopPrice=0,
+        clientID=clientID
+    )
+    print("Modify BracketOrder: ", response)
+
+"""Get Dealer Position by NET Request"""
+response = xt.get_dealerposition_daywise(clientID=clientID)
+print("Dealer Position by Net: ", response)
+
+"""Get Dealer Position by DAY Request"""
+response = xt.get_dealerposition_netwise(clientID=clientID)
+print("Dealer Position by Day: ", response)
+
+"""Dealer Order book Request"""
+response = xt.get_dealer_orderbook(clientID)
+print("Dealer Order Book: ", response)
+
+"""Get Dealer Trade Book Request"""
+response = xt.get_dealer_tradebook(clientID=clientID)
+print("Dealer Trade Book: ", response)
 
 """Cancel all Orders Request"""
 response = xt.cancelall_order(exchangeInstrumentID=22,exchangeSegment=xt.EXCHANGE_NSECM)
