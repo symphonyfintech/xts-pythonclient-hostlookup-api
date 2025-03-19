@@ -182,7 +182,7 @@ class XTSConnect(XTSCommon):
         self.root = root or self._default_root_uri
         self.timeout = timeout or self._default_timeout
         self.uniqueKey = None
-        self.connectionString = None
+        self.connectionString = ""
         super().__init__()
 
         # Create requests session only if pool exists. Reuse session
@@ -835,7 +835,8 @@ class XTSConnect(XTSCommon):
         if("marketdata" in uri or "apimarketdata" in uri):
             url = urljoin(self._default_marketdataroot_uri, uri)
         else:
-            url = urljoin(self.connectionString, uri)
+            # url = urljoin(self.connectionString, uri)
+	    url = self.connectionString + uri
        
 
         headers = {}
