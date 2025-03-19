@@ -836,7 +836,7 @@ class XTSConnect(XTSCommon):
             url = urljoin(self._default_marketdataroot_uri, uri)
         else:
             # url = urljoin(self.connectionString, uri)
-	    url = self.connectionString + uri
+            url = self.connectionString + uri
        
 
         headers = {}
