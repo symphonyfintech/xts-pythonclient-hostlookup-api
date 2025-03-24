@@ -56,9 +56,6 @@ def on_message1502_json_full(data):
 def on_message1505_json_full(data):
     print('I received a 1505 Candle data message!' + data)
 
-# Callback for message code 1507 FULL
-def on_message1507_json_full(data):
-    print('I received a 1507 MarketStatus data message!' + data)
 
 # Callback for message code 1510 FULL
 def on_message1510_json_full(data):
@@ -94,7 +91,6 @@ def on_message1512_json_partial(data):
     print('I received a 1512, LTP Event message!' + data)
 
 
-
 # Callback for message code 1105 PARTIAL
 def on_message1105_json_partial(data):
     print('I received a 1105, Instrument Property Change Event message!' + data)
@@ -115,11 +111,9 @@ soc.on_connect = on_connect
 soc.on_message = on_message
 soc.on_message1502_json_full = on_message1502_json_full
 soc.on_message1505_json_full = on_message1505_json_full
-soc.on_message1507_json_full = on_message1507_json_full
 soc.on_message1510_json_full = on_message1510_json_full
 soc.on_message1501_json_full = on_message1501_json_full
 soc.on_message1512_json_full = on_message1512_json_full
-soc.on_message1105_json_full = on_message1105_json_full
 soc.on_message1502_json_partial = on_message1502_json_partial
 soc.on_message1505_json_partial = on_message1505_json_partial
 soc.on_message1510_json_partial = on_message1510_json_partial
@@ -135,7 +129,6 @@ el = soc.get_emitter()
 el.on('connect', on_connect)
 el.on('1501-json-full', on_message1501_json_full)
 el.on('1502-json-full', on_message1502_json_full)
-el.on('1507-json-full', on_message1507_json_full)
 el.on('1512-json-full', on_message1512_json_full)
 el.on('1105-json-full', on_message1105_json_full)
 
