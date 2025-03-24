@@ -1,6 +1,6 @@
 import configparser
 import os
-
+from urllib.parse import urlparse
 import socketio
 
 
@@ -63,10 +63,22 @@ class OrderSocket_io(socketio.Client):
         configFilePath = os.path.join(currDirMain, 'config.ini')
         configParser.read(configFilePath)
         self.port = configParser.get('root_url', 'root').strip()
-        
-        port = f'{connectionString}/?token=' 
+        # self.socketioPath = "/"+connectionString.split("/")[-1]+"/socket.io"
         
 
+        parsed_url = urlparse(connectionString)
+        port = f"{parsed_url.scheme}://{parsed_url.hostname}"
+        
+        if parsed_url.port:
+            port += f":{parsed_url.port}"
+        
+        path_segments = parsed_url.path.strip('/').split('/')
+        if path_segments:
+            self.socketioPath = f"/{path_segments[0]}/socket.io"
+        else:
+            self.socketioPath = "/socketio"
+        
+        port = f'{connectionString}/?token=' 
         self.connection_url = port + self.token + '&userID=' + self.userID + "&apiType=INTERACTIVE"
 
     def connect(self, headers={}, transports='websocket', namespaces=None, socketio_path='/socket.io',
@@ -93,7 +105,7 @@ class OrderSocket_io(socketio.Client):
         url = self.connection_url
 
         """Connected to the socket."""
-        self.sid.connect(url, headers, transports, namespaces, socketio_path)
+        self.sid.connect(url, headers, transports, namespaces, self.socketioPath)
         self.sid.wait()
         """Disconnect from the socket."""
         # self.sid.disconnect()
